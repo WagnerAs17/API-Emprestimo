@@ -31,6 +31,8 @@ let emprestimos = {
 
 }
 
+//Criaria uma classe aqui para represntar o cliente
+//O nome do método está represntando o que ele realmente faz ?
 function produtos_emprestimo(name,cpf,age,uf,rendaMensal){
     let list_produtos = []
     
@@ -69,17 +71,20 @@ function produtos_emprestimo(name,cpf,age,uf,rendaMensal){
 app.get("/api", (req,res) => {
     
     try{
+        //Aqui poderia ter uma classe para representar o cliente.
+        //Qual a vantagem e desvantagem de usar o tipo "var" ?
         var clientName = req.body.cliente.name;
         var clientCpf = req.body.cliente.cpf;
         var clientAge = req.body.cliente.age;
         var clientUf = req.body.cliente.uf;
         var clientRendaMensal = req.body.cliente.renda_mensal;
 
+        //isolaria esse validacao em metodo. Provocação(Existe algo no node que faça essa validação ?)
         if(! (clientName && clientCpf && clientAge && clientUf && clientRendaMensal)){
             throw new Error("Property missing");
         } 
         
-
+        //O mesmo se aplica aqui 
         if(! (typeof clientName == 'string' && typeof clientCpf == 'string' && typeof clientAge == 'number' && typeof clientUf == 'string' && typeof clientRendaMensal == 'number')){
             throw new Error("The type of one of the variables is wrong. ");      
         } 
